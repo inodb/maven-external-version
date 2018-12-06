@@ -24,7 +24,7 @@
                 <version>2.5.2</version>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
+                <groupId>org.apache.maven.version</groupId>
                 <artifactId>maven-external-version-plugin</artifactId>
                 <version>0.1.1-SNAPSHOT</version>
                 <extensions>true</extensions>

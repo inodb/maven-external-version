@@ -23,12 +23,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.inodb</groupId>
+        <groupId>org.apache.maven.version</groupId>
         <artifactId>maven-external-version</artifactId>
-        <version>ce66b2ca144e710077541b5b98395b98af05e6e9</version>
+        <version>0.1.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.apache.maven.plugins</groupId>
+    <groupId>org.apache.maven.version</groupId>
     <artifactId>maven-external-version-plugin</artifactId>
     <packaging>maven-plugin</packaging>
 

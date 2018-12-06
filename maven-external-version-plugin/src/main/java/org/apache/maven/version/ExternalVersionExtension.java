@@ -96,7 +96,9 @@ public class ExternalVersionExtension
         for ( MavenProject mavenProject : session.getAllProjects() )
         {
             // Lookup this plugin's configuration
-            Plugin plugin = mavenProject.getPlugin( "com.github.inodb.maven-external-version:maven-external-version-plugin" );
+            Plugin plugin = mavenProject.getPlugin(
+                "com.github.inodb.maven-external-version:maven-external-version-plugin"
+            );
 
             // now we are going to wedge in the config
             Xpp3Dom configDom = (Xpp3Dom) plugin.getConfiguration();
@@ -215,7 +217,9 @@ public class ExternalVersionExtension
                 }
             }
             
-            Plugin plugin = mavenProject.getPlugin( "com.github.inodb.maven-external-version:maven-external-version-plugin" );
+            Plugin plugin = mavenProject.getPlugin(
+                "com.github.inodb.maven-external-version:maven-external-version-plugin"
+            );
             // now we are going to wedge in the config
             Xpp3Dom pluginConfiguration = (Xpp3Dom) plugin.getConfiguration();
             
