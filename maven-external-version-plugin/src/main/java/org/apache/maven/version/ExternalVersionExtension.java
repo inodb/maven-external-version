@@ -52,6 +52,7 @@ import java.io.Reader;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -123,6 +124,38 @@ public class ExternalVersionExtension
                 String newFinalName = oldFinalName.replaceFirst( Pattern.quote( oldVersion ), newVersion );
                 logger.info( "Updating project.build.finalName: " + newFinalName );
                 mavenProject.getBuild().setFinalName( newFinalName );
+
+                List<Dependency> deps = mavenProject.getDependencies();
+
+                if ( deps != null )
+                {
+                    for ( Dependency dep: deps )
+                    {
+                        if ( mavenProject.getGroupId().equals( dep.getGroupId() ) )
+                        {
+                            dep.setVersion( newVersion );
+                        }
+                    }
+                }
+
+                List<Plugin> plugins = mavenProject.getBuildPlugins();
+                if ( plugins != null )
+                {
+                    for ( Plugin p : plugins )
+                    {
+                        deps = p.getDependencies();
+                        if ( deps != null )
+                        {
+                            for ( Dependency dep: deps )
+                            {
+                                if ( mavenProject.getGroupId().equals( dep.getGroupId() ) )
+                                {
+                                    dep.setVersion( newVersion );
+                                }
+                            }
+                        }
+                    }
+                }
 
                 gavVersionMap.put( buildGavKey( mavenProject.getGroupId(), mavenProject.getArtifactId(), oldVersion ),
                                    newVersion );
@@ -204,6 +237,7 @@ public class ExternalVersionExtension
             fileReader = new FileReader( mavenProject.getFile() );
             Model model = new MavenXpp3Reader().read( fileReader );
             model.setVersion( mavenProject.getVersion() );
+
 
 
             // TODO: this needs to be restructured when other references are updated (dependencies, dep-management, plugins, etc)
